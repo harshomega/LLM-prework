@@ -4,9 +4,9 @@ A retrieval-augmented generation system that answers questions from a folder
 of internal documents, built entirely with free/open-source tools.
 
 ## Stack (100% free)
-- **Embeddings:** `sentence-transformers` (`all-MiniLM-L6-v2`) — runs locally on CPU
-- **Vector store:** FAISS (`IndexFlatIP`) — local, no server, no cost
-- **LLM:** Ollama running a local model (e.g. `llama3`, `mistral`, `phi3`) — free, no API key
+- **Embeddings:** `sentence-transformers` (`all-MiniLM-L6-v2`)
+- **Vector store:** FAISS (`IndexFlatIP`)
+- **LLM:** Ollama running a local model 
 - **Orchestration:** plain Python — no LangChain/LlamaIndex, so every step is explicit
 
 ## Setup
@@ -22,17 +22,16 @@ ollama pull llama3
 files into `data/`, then:
 
 ```bash
-python ingest.py                       # builds the FAISS index
-python query.py "your question here"   # ask a question
+python ingest.py                       
+python query.py "your question here"   
 ```
 
 **Option B — scrape a website into docs first:**
 
 ```bash
-python scrape.py urls.txt              # one URL per line
-# or: python scrape.py "https://site.com/page1" "https://site.com/page2"
+python scrape.py urls.txt             
 
-python ingest.py                       # index the scraped pages
+python ingest.py                      
 python query.py "your question here"
 ```
 
