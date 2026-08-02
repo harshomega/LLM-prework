@@ -35,9 +35,8 @@ python ingest.py
 python query.py "your question here"
 ```
 
-`scrape.py` uses Selenium (headless Chrome) rather than plain
-`requests` + BeautifulSoup because many internal wikis (Confluence,
-Notion, SharePoint) render content with JavaScript — a plain HTTP GET
+`scrape.py` uses Selenium headless Chrome rather than plain
+`requests` + BeautifulSoup because many internal wikis render content with JavaScript — a plain HTTP GET
 only returns the empty shell HTML before JS runs. Selenium waits for
 the page to actually render before extracting text.
 
@@ -87,20 +86,19 @@ the page to actually render before extracting text.
 
 4. **Explicit "don't know" instruction in the prompt:** the single biggest
    lever against hallucination. Worth mentioning as a technical decision
-   with a clear trade-off (more "I don't know" responses vs. fewer
-   confidently wrong answers).
+   with a clear trade-off more "I don't know" responses vs. fewer
+   confidently wrong answers.
 
 5. **Why Selenium over requests+BeautifulSoup for scraping:** most modern
-   internal knowledge tools (Confluence, Notion, SharePoint) render content
+   internal knowledge tools render content
    client-side with JavaScript. `requests.get()` only sees the pre-render
-   HTML. Trade-off: Selenium is much heavier (spins up a real browser) and
+   HTML. Trade-off: Selenium is much heavier and
    slower per page — fine for a few hundred pages, but would need a
-   headless-browser pool or async scraping (e.g. Playwright with
-   concurrency) if scraping thousands of pages.
+   headless-browser pool or async scraping if scraping thousands of pages.
 
 6. **Politeness delay between requests:** a 2-second delay between page
    loads in `scrape.py` avoids hammering the target server and getting
-   rate-limited or IP-banned mid-crawl — a real issue I'd hit if scraping
+   rate-limited or IP-banned mid-crawl a real issue I'd hit if scraping
    too fast.
 
 ## Known bottleneck (good scaling story for Section 3)
