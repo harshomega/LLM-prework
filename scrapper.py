@@ -55,7 +55,7 @@ def extract_clean_text(html: str) -> str:
 def url_to_filename(url: str) -> str:
     """Turn a URL into a safe, unique filename."""
     slug = re.sub(r"[^a-zA-Z0-9]+", "_", url).strip("_")[:80]
-    url_hash = hashlib.md5(url.encode()).hexdigest()[:8]  # avoid collisions on similar slugs
+    url_hash = hashlib.md5(url.encode()).hexdigest()[:8] 
     return f"{slug}_{url_hash}.txt"
 
 
