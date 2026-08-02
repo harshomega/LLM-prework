@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ollama pull llama3
 ```
 
-**Option A — you already have docs:** drop your `.txt`, `.md`, or `.pdf`
+**Option A — if already have docs:** drop your `.txt`, `.md`, or `.pdf`
 files into `data/`, then:
 
 ```bash
@@ -68,7 +68,7 @@ the page to actually render before extracting text.
                               [Ollama local LLM] ──▶ answer
 ```
 
-## Key design decisions (for your prework write-up)
+## Key design decisions 
 
 1. **Why sentence-transformers over OpenAI embeddings:** free, runs locally,
    no rate limits, no data leaving your machine. Trade-off: lower embedding
